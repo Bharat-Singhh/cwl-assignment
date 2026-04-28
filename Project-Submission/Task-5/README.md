@@ -1,6 +1,7 @@
-﻿# Task 5 -- Firewall Configuration (UFW)
+# Task 5 -- Firewall Configuration (UFW)
 
 ## Objective
+
 Configure UFW to:
 - Allow SSH only from a trusted (specific) IP address
 - Allow HTTP on port 80
@@ -11,68 +12,85 @@ Configure UFW to:
 
 ## Step 1 -- Install UFW
 
-`ash
+```bash
 sudo apt update
+```
+
+```bash
 sudo apt install -y ufw
-`
+```
 
 ---
 
 ## Step 2 -- Set Default Policies
 
-`ash
+Block all incoming traffic by default, and allow all outgoing:
+
+```bash
 sudo ufw default deny incoming
+```
+
+```bash
 sudo ufw default allow outgoing
-`
+```
 
 ---
 
 ## Step 3 -- Allow SSH from Specific IP Only
 
-Run ipconfig on Windows to find your host IP, then:
+On your Windows machine, run `ipconfig` in Command Prompt to find your host IP address. Then allow SSH only from that IP:
 
-`ash
+```bash
 sudo ufw allow from YOUR-WINDOWS-IP to any port 22
-# Example: sudo ufw allow from 192.168.1.50 to any port 22
-`
+```
+
+Example:
+
+```bash
+sudo ufw allow from 192.168.1.50 to any port 22
+```
+
+> **Important:** Do this before enabling UFW. If you enable the firewall without this rule, your SSH session will be blocked.
 
 ---
 
 ## Step 4 -- Allow HTTP (Port 80)
 
-`ash
+```bash
 sudo ufw allow 80/tcp
-`
+```
 
 ---
 
 ## Step 5 -- Allow Port 8000 (Web App)
 
-`ash
+```bash
 sudo ufw allow 8000/tcp
-`
+```
 
 ---
 
 ## Step 6 -- Enable UFW
 
-Ensure your SSH session is active before running this:
+Make sure your SSH session is still active, then enable the firewall:
 
-`ash
+```bash
 sudo ufw enable
-# Type y when prompted
-`
+```
+
+Type `y` when prompted. The rules configured in the previous steps will take effect immediately.
 
 ---
 
 ## Step 7 -- Verify Rules
 
-`ash
+```bash
 sudo ufw status verbose
-`
+```
 
 Expected output:
-`
+
+```
 Status: active
 Default: deny (incoming), allow (outgoing)
 
@@ -81,25 +99,28 @@ To                    Action      From
 22                    ALLOW IN    YOUR-WINDOWS-IP
 80/tcp                ALLOW IN    Anywhere
 8000/tcp              ALLOW IN    Anywhere
-`
+```
 
 ---
 
 ## Step 8 -- Testing
 
-SSH from allowed IP (should connect normally via PuTTY).
+**SSH from allowed IP** — connect normally via PuTTY using the trusted IP. The session should open without issues.
 
-Web app access:
-`ash
+**Web app from browser** — open `http://VM-IP:8000` in your browser. Expected response is the HTML from `index.html`.
+
+**Curl test from VM terminal:**
+
+```bash
 curl http://VM-IP:8000
-# Expected: HTML from index.html
-`
+```
 
-SSH from any other IP will time out (blocked).
+**SSH from any other IP** — the connection will time out. UFW silently drops packets from untrusted sources, so no error is shown — the connection simply never completes.
 
 ---
 
 ## Files
+
 | File | Purpose |
 |------|---------|
-| firewall-setup.sh | Script to reproduce all UFW commands |
+| `firewall-setup.sh` | Script to reproduce all UFW commands from this task |
