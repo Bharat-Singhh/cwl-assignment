@@ -4,8 +4,6 @@
 
 Create a dedicated `admin` user who owns the monitoring directory with full access. All other users are completely restricted.
 
-> **Note:** Task 4 was completed before Task 3, so the directory was already secured before the monitoring script and cron job were configured.
-
 ---
 
 ## Step 1 -- Create the admin User
@@ -60,6 +58,8 @@ Expected output:
 drwx------ 3 admin admin 4096 Jan 15 14:00 /opt/container-monitor
 drwx------ 2 admin admin 4096 Jan 15 14:00 /opt/container-monitor/logs
 ```
+<img width="958" height="409" alt="image" src="https://github.com/user-attachments/assets/697952ee-9ab0-4563-abc7-c841bc240e85" />
+
 
 The `700` permission means the owner (`admin`) has full read, write, and execute access while all other users have no access at all.
 
