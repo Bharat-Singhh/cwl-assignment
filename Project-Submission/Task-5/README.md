@@ -50,7 +50,7 @@ Example:
 sudo ufw allow from 192.168.1.50 to any port 22
 ```
 
-> **Important:** Do this before enabling UFW. If you enable the firewall without this rule, your SSH session will be blocked.
+
 
 ---
 
@@ -67,10 +67,16 @@ sudo ufw allow 80/tcp
 ```bash
 sudo ufw allow 8000/tcp
 ```
+## Step 6 -- Allow Port 3000 (Grafana)
+
+```bash
+sudo ufw allow 3000/tcp
+```
+
 
 ---
 
-## Step 6 -- Enable UFW
+## Step 7 -- Enable UFW
 
 Make sure your SSH session is still active, then enable the firewall:
 
