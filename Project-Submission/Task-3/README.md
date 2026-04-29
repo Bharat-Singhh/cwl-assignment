@@ -107,8 +107,21 @@ Docker Containers
                     
 ```
 
----
+<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/b4aeab54-a31c-4aa3-9eb7-32e5e6326e9b" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/812fd2da-da08-4d3d-aa60-2ee472a08e90" />
 
+
+
+
+As shown in the screenshot, this is a detailed metrics dashboard for our VPS displaying CPU usage, network usage, memory usage, and system processes. This is a high-level Node Exporter Full dashboard
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c773e207-d850-4f40-91ec-93c830f52a23" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/3bd2d6d9-5dae-4d43-b2be-711d4a3386a6" />
+
+Custom dashboards can also be built from scratch in Grafana. As shown in the screenshot, this is a custom-made Grafana dashboard displaying total CPU usage, total memory usage, and memory consumed by a specific container — in this case, we are monitoring the cwl-webapp container.
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/4a3b52ca-d7e6-41bd-baea-a63664c4e96b" />
+
+Grafana can also be configured to send automated alerts. For example, if the VPS CPU usage crosses a defined threshold value, Grafana will automatically trigger an email notification so the issue can be addressed as quickly as possible.
 ## Files
 
 | File | Purpose |
