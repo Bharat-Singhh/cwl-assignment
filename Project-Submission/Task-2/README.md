@@ -6,7 +6,14 @@ Build a custom Docker image from `index.html`, push it to Docker Hub, install Do
 
 ---
 
-## Step 1 -- Build Docker Image Locally (Windows)
+## Step 1 -- Build Docker Image Locally (Windows) usng dockerfile
+```
+﻿FROM nginx:alpine
+RUN rm -rf /usr/share/nginx/html/*
+COPY index.html /usr/share/nginx/html/
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+```
 
 The `index.html` was provided with the assignment. The `Dockerfile` was created locally in the same folder as `index.html`.
 
